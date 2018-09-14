@@ -21,11 +21,12 @@ const instance = axios.create({
 instance.interceptors.request.use(
   config => {
     // 在此添加发起请求前的信息
-    config.headers.Authorization = 'abc'
+    config.headers.Authorization = ''
     return config
   },
   error => {
     // 对错误请求信息的处理
+    console.log(error)
     return Promise.reject(error)
   }
 )
@@ -34,12 +35,44 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   response => {
     // 对响应数据处理
+    const data = response.data
+    if (data.code === 1) {
+      console.log('success')
+    } else if (data.code === 0) {
+      console.log('error')
+    }
     return response
   },
   error => {
     // 对响应错误数据处理
+    if (error && error.response) {
+      if (error.response.status === 404) {
+        console.log('error')
+      } else if (error.response.status === 400) {
+        console.log('error')
+      } else if (error.response.status === 401) {
+        console.log('error')
+      }
+    }
     return Promise.reject(error)
   }
 )
 
-export default instance
+const http = (method, url, params) => {
+  if (method === 'get') {
+    params = {params: params}
+  }
+  return new Promise((resolve, reject) => {
+    instance[method](url, params).then(response => {
+      resolve(response)
+    }, error => {
+      reject(error)
+    }).catch(error => {
+      reject(error)
+    })
+  }).catch(error => {
+    console.log(error)
+  })
+}
+
+export default http

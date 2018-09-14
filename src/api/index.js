@@ -1,5 +1,9 @@
 import http from './http'
 
-export const fetchSignIn = () => {
-  return http.post('/login', params)
+const api = {
+  login: '/login'
+}
+
+export const fetchSignIn = (params) => {
+  return http('post', api.login, params)
 }

@@ -6274,6 +6274,13 @@ postcss-pseudoelements@^5.0.0:
   dependencies:
     postcss "^6.0.0"
 
+postcss-px-to-viewport-opt@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/postcss-px-to-viewport-opt/-/postcss-px-to-viewport-opt-0.0.4.tgz#c988c24c8ba8e40b14277efdfa96bb862b0e0430"
+  dependencies:
+    object-assign "^4.0.1"
+    postcss "^5.0.2"
+
 postcss-px-to-viewport@^0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/postcss-px-to-viewport/-/postcss-px-to-viewport-0.0.3.tgz#761259af20ad70adb01f503697337276d7831363"
