@@ -58,12 +58,12 @@ instance.interceptors.response.use(
   }
 )
 
-const http = (method, url, params) => {
+const http = (method, url, params, config = {'Content-Type': 'application/x-www-form-urlencoded'}) => {
   if (method === 'get') {
     params = {params: params}
   }
   return new Promise((resolve, reject) => {
-    instance[method](url, params).then(response => {
+    instance[method](url, params, config).then(response => {
       resolve(response)
     }, error => {
       reject(error)
